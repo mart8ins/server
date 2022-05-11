@@ -1,4 +1,10 @@
 import { Router } from "express";
+import mongoose from "mongoose";
+
+mongoose.connect(
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_USER_PASSWORD}@shopping.8edhp.mongodb.net/${process.env.DATABASE_NAME_SLIST}?retryWrites=true&w=majority`,
+    {}
+);
 
 import { createRecipe, getRecipes, deleteRecipe } from "./controllers/recipes";
 import { getGroceryNames, saveGroceryNames } from "./controllers/groceries";
@@ -25,6 +31,4 @@ router.post("/shoppingList/delete", deleteShoppingList);
 // USER
 router.post("/user", signIn);
 
-export const sListRoute = () => {
-    return router;
-};
+export default router;
